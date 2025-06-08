@@ -1,13 +1,52 @@
 {
   "name": "tsenv",
   "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Type-check environment variables against TypeScript schemas",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "tsenv": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
+    "build": "tsc && node scripts/post-build.js",
+    "dev": "tsx src/cli.ts",
+    "prepublishOnly": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "env",
+    "environment",
+    "variables",
+    "type-check",
+    "validation",
+    "cli"
+  ],
   "author": "",
   "license": "MIT",
-  "packageManager": "pnpm@10.11.1"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kobapi28/tsenv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kobapi28/tsenv/issues"
+  },
+  "homepage": "https://github.com/kobapi28/tsenv#readme",
+  "packageManager": "pnpm@10.11.1",
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "tsx": "4.19.4",
+    "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "chalk": "5.4.1",
+    "commander": "14.0.0",
+    "dotenv": "16.5.0",
+    "glob": "11.0.2"
+  }
 }
