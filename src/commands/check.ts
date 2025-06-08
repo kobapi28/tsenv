@@ -27,10 +27,12 @@ export async function checkCommand(options: CheckOptions) {
 
     // Parse all env files
     const allVariables: EnvVariable[] = [];
+    const processedFiles: string[] = [];
     for (const file of envFiles) {
       try {
         const variables = parseEnvFile(file);
         allVariables.push(...variables);
+        processedFiles.push(file);
       } catch (_error) {}
     }
 
@@ -38,7 +40,7 @@ export async function checkCommand(options: CheckOptions) {
     const errors = validateEnvVariables(allVariables, schema);
 
     // Report errors
-    reportErrors(errors);
+    reportErrors(errors, processedFiles);
 
     // Exit with error code if there are errors
     if (errors.length > 0) {

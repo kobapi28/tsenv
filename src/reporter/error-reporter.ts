@@ -2,7 +2,10 @@ import * as path from "node:path";
 import chalk from "chalk";
 import type { ValidationError } from "../checker/type-checker";
 
-export function reportErrors(errors: ValidationError[]): void {
+export function reportErrors(
+  errors: ValidationError[],
+  processedFiles: string[] = [],
+): void {
   if (errors.length === 0) {
     // biome-ignore lint/suspicious/noConsole: CLI tool needs console output
     console.log(chalk.green("✓ All environment variables are valid"));
@@ -16,9 +19,13 @@ export function reportErrors(errors: ValidationError[]): void {
     // biome-ignore lint/suspicious/noConsole: CLI tool needs console output
     console.log(chalk.red("✗ Missing required variables:"));
     for (const error of groupedErrors.missing) {
+      const fileList =
+        processedFiles.length > 0
+          ? ` (checked: ${processedFiles.map((f) => path.relative(process.cwd(), f)).join(", ")})`
+          : "";
       // biome-ignore lint/suspicious/noConsole: CLI tool needs console output
       console.log(
-        `  ${chalk.yellow(error.field ?? "unknown")} (expected: ${error.expectedType})`,
+        `  ${chalk.yellow(error.field ?? "unknown")} (expected: ${error.expectedType})${fileList}`,
       );
     }
     // biome-ignore lint/suspicious/noConsole: CLI tool needs console output
