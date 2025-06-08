@@ -43,6 +43,9 @@
     "url": "https://github.com/kobapi28/tsenv/issues"
   },
   "homepage": "https://github.com/kobapi28/tsenv#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "packageManager": "pnpm@10.11.1",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
