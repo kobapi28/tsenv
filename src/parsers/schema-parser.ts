@@ -1,6 +1,6 @@
-import * as ts from 'typescript';
-import * as fs from 'fs';
-import * as path from 'path';
+import * as fs from "node:fs";
+import * as path from "node:path";
+import * as ts from "typescript";
 
 export interface SchemaField {
   name: string;
@@ -16,16 +16,16 @@ export function parseSchemaFile(schemaPath: string): Schema {
   const absolutePath = path.resolve(schemaPath);
   const sourceFile = ts.createSourceFile(
     absolutePath,
-    fs.readFileSync(absolutePath, 'utf-8'),
+    fs.readFileSync(absolutePath, "utf-8"),
     ts.ScriptTarget.Latest,
-    true
+    true,
   );
 
   const schema: Schema = { fields: [] };
 
   function visit(node: ts.Node) {
     // Handle type Env = { ... }
-    if (ts.isTypeAliasDeclaration(node) && node.name.text === 'Env') {
+    if (ts.isTypeAliasDeclaration(node) && node.name.text === "Env") {
       if (ts.isTypeLiteralNode(node.type)) {
         extractFieldsFromTypeLiteral(node.type);
       }
@@ -35,19 +35,23 @@ export function parseSchemaFile(schemaPath: string): Schema {
   }
 
   function extractFieldsFromTypeLiteral(typeLiteral: ts.TypeLiteralNode) {
-    typeLiteral.members.forEach(member => {
-      if (ts.isPropertySignature(member) && member.name && ts.isIdentifier(member.name)) {
+    for (const member of typeLiteral.members) {
+      if (
+        ts.isPropertySignature(member) &&
+        member.name &&
+        ts.isIdentifier(member.name)
+      ) {
         const fieldName = member.name.text;
         const optional = !!member.questionToken;
-        const fieldType = member.type ? getTypeString(member.type) : 'any';
-        
+        const fieldType = member.type ? getTypeString(member.type) : "any";
+
         schema.fields.push({
           name: fieldName,
           type: fieldType,
-          optional
+          optional,
         });
       }
-    });
+    }
   }
 
   visit(sourceFile);
@@ -56,25 +60,25 @@ export function parseSchemaFile(schemaPath: string): Schema {
 
 function getTypeString(node: ts.TypeNode): string {
   if (ts.isLiteralTypeNode(node) && ts.isStringLiteral(node.literal)) {
-    return 'string';
+    return "string";
   }
-  
+
   if (node.kind === ts.SyntaxKind.StringKeyword) {
-    return 'string';
+    return "string";
   }
-  
+
   if (node.kind === ts.SyntaxKind.NumberKeyword) {
-    return 'number';
+    return "number";
   }
-  
+
   if (node.kind === ts.SyntaxKind.BooleanKeyword) {
-    return 'boolean';
+    return "boolean";
   }
-  
+
   if (ts.isUnionTypeNode(node)) {
-    const types = node.types.map(t => getTypeString(t));
-    return types.join(' | ');
+    const types = node.types.map((t) => getTypeString(t));
+    return types.join(" | ");
   }
-  
-  return 'unknown';
+
+  return "unknown";
 }

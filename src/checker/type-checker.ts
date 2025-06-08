@@ -1,8 +1,8 @@
-import { EnvVariable } from '../parsers/env-parser';
-import { Schema, SchemaField } from '../parsers/schema-parser';
+import type { EnvVariable } from "../parsers/env-parser";
+import type { Schema } from "../parsers/schema-parser";
 
 export interface ValidationError {
-  type: 'missing' | 'type_mismatch' | 'undefined_variable';
+  type: "missing" | "type_mismatch" | "undefined_variable";
   field?: string;
   expectedType?: string;
   actualValue?: string;
@@ -12,74 +12,74 @@ export interface ValidationError {
 
 export function validateEnvVariables(
   envVariables: EnvVariable[],
-  schema: Schema
+  schema: Schema,
 ): ValidationError[] {
   const errors: ValidationError[] = [];
   const envMap = new Map<string, EnvVariable>();
-  
-  envVariables.forEach(env => {
+
+  for (const env of envVariables) {
     envMap.set(env.key, env);
-  });
-  
+  }
+
   // Check for missing required variables
-  schema.fields.forEach(field => {
+  for (const field of schema.fields) {
     if (!field.optional && !envMap.has(field.name)) {
       errors.push({
-        type: 'missing',
+        type: "missing",
         field: field.name,
-        expectedType: field.type
+        expectedType: field.type,
       });
     }
-  });
-  
+  }
+
   // Check for type mismatches and undefined variables
-  envVariables.forEach(env => {
-    const schemaField = schema.fields.find(f => f.name === env.key);
-    
+  for (const env of envVariables) {
+    const schemaField = schema.fields.find((f) => f.name === env.key);
+
     if (!schemaField) {
       errors.push({
-        type: 'undefined_variable',
+        type: "undefined_variable",
         field: env.key,
         actualValue: env.value,
         file: env.file,
-        line: env.line
+        line: env.line,
       });
     } else {
       const typeError = checkType(env.value, schemaField.type);
       if (typeError) {
         errors.push({
-          type: 'type_mismatch',
+          type: "type_mismatch",
           field: env.key,
           expectedType: schemaField.type,
           actualValue: env.value,
           file: env.file,
-          line: env.line
+          line: env.line,
         });
       }
     }
-  });
-  
+  }
+
   return errors;
 }
 
 function checkType(value: string, expectedType: string): boolean {
-  if (expectedType === 'string') {
+  if (expectedType === "string") {
     return false; // All env values are strings
   }
-  
-  if (expectedType === 'number') {
-    return isNaN(Number(value));
+
+  if (expectedType === "number") {
+    return Number.isNaN(Number(value));
   }
-  
-  if (expectedType === 'boolean') {
+
+  if (expectedType === "boolean") {
     const lowerValue = value.toLowerCase();
-    return !['true', 'false', '1', '0', 'yes', 'no'].includes(lowerValue);
+    return !["true", "false", "1", "0", "yes", "no"].includes(lowerValue);
   }
-  
-  if (expectedType.includes('|')) {
-    const types = expectedType.split('|').map(t => t.trim());
-    return types.every(type => checkType(value, type));
+
+  if (expectedType.includes("|")) {
+    const types = expectedType.split("|").map((t) => t.trim());
+    return types.every((type) => checkType(value, type));
   }
-  
+
   return false;
 }

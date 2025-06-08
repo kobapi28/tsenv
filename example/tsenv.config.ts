@@ -1,4 +1,4 @@
 export default {
-    schema: './env.ts',
-    files: ['./.env', './test.env']
-}
+  schema: "./env.ts",
+  files: ["./.env", "./test.env"],
+};
