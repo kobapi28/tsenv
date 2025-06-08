@@ -7,7 +7,13 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["**/node_modules", "**/out", "**/dist", "**/.claude"]
+    "ignore": [
+      "**/node_modules",
+      "**/out",
+      "**/dist",
+      "**/.claude",
+      "package.json"
+    ]
   },
   "formatter": {
     "enabled": true,
