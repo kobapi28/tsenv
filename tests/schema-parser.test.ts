@@ -125,6 +125,7 @@ type Env = {
       ]);
     });
 
+    // TODO: Literal types should be inferred as their literal values rather than widened to string type
     it("should handle literal string types as string", () => {
       const schemaPath = path.join(testSchemaDir, "env.d.ts");
       const schemaContent = `
@@ -150,6 +151,7 @@ type Env = {
       });
     });
 
+    // TODO: if can't find Env type, should throw an error
     it("should return empty schema for files without Env type", () => {
       const schemaPath = path.join(testSchemaDir, "empty.d.ts");
       const schemaContent = `
