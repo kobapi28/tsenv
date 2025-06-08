@@ -7,16 +7,17 @@
   "bin": {
     "tsenv": "./dist/cli.js"
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "scripts": {
     "build": "tsc && node scripts/post-build.js",
     "dev": "tsx src/cli.ts",
     "prepublishOnly": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type:check": "tsc --noEmit",
+    "biome:check": "biome check .",
+    "biome:format": "biome format --write .",
+    "biome:lint": "biome lint .",
+    "check": "pnpm type:check && pnpm biome:check"
   },
   "keywords": [
     "typescript",
@@ -39,6 +40,7 @@
   "homepage": "https://github.com/kobapi28/tsenv#readme",
   "packageManager": "pnpm@10.11.1",
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/node": "22.15.30",
     "tsx": "4.19.4",
     "typescript": "5.8.3"

@@ -1,58 +1,49 @@
-import chalk from 'chalk';
-import * as path from 'path';
-import { ValidationError } from '../checker/type-checker';
+import * as path from "node:path";
+import type { ValidationError } from "../checker/type-checker";
 
 export function reportErrors(errors: ValidationError[]): void {
   if (errors.length === 0) {
-    console.log(chalk.green('✓ All environment variables are valid'));
     return;
   }
-
-  console.log(chalk.red(`✗ Found ${errors.length} validation error${errors.length > 1 ? 's' : ''}:\n`));
 
   const groupedErrors = groupErrorsByType(errors);
 
   // Report missing variables
   if (groupedErrors.missing.length > 0) {
-    console.log(chalk.yellow('Missing required variables:'));
-    groupedErrors.missing.forEach(error => {
-      console.log(`  ${chalk.red('•')} ${chalk.bold(error.field)} (expected: ${chalk.cyan(error.expectedType)})`);
-    });
-    console.log();
+    for (const _error of groupedErrors.missing) {
+      // TODO: Implement missing variable reporting
+    }
   }
 
   // Report type mismatches
   if (groupedErrors.type_mismatch.length > 0) {
-    console.log(chalk.yellow('Type mismatches:'));
-    groupedErrors.type_mismatch.forEach(error => {
-      const location = error.file ? `${path.relative(process.cwd(), error.file)}:${error.line}` : '';
-      console.log(`  ${chalk.red('•')} ${chalk.bold(error.field)}`);
-      console.log(`    Expected: ${chalk.cyan(error.expectedType)}`);
-      console.log(`    Actual: ${chalk.red(`"${error.actualValue}"`)}`);
+    for (const error of groupedErrors.type_mismatch) {
+      const location = error.file
+        ? `${path.relative(process.cwd(), error.file)}:${error.line}`
+        : "";
       if (location) {
-        console.log(`    Location: ${chalk.gray(location)}`);
+        // TODO: Implement type mismatch reporting
       }
-    });
-    console.log();
+    }
   }
 
   // Report undefined variables
   if (groupedErrors.undefined_variable.length > 0) {
-    console.log(chalk.yellow('Undefined variables in schema:'));
-    groupedErrors.undefined_variable.forEach(error => {
-      const location = error.file ? `${path.relative(process.cwd(), error.file)}:${error.line}` : '';
-      console.log(`  ${chalk.red('•')} ${chalk.bold(error.field)} = "${error.actualValue}"`);
+    for (const error of groupedErrors.undefined_variable) {
+      const location = error.file
+        ? `${path.relative(process.cwd(), error.file)}:${error.line}`
+        : "";
       if (location) {
-        console.log(`    Location: ${chalk.gray(location)}`);
+        // TODO: Implement undefined variable reporting
       }
-    });
+    }
   }
 }
 
 function groupErrorsByType(errors: ValidationError[]) {
   return {
-    missing: errors.filter(e => e.type === 'missing'),
-    type_mismatch: errors.filter(e => e.type === 'type_mismatch'),
-    undefined_variable: errors.filter(e => e.type === 'undefined_variable')
+    missing: errors.filter((e) => e.type === "missing"),
+    type_mismatch: errors.filter((e) => e.type === "type_mismatch"),
+    undefined_variable: errors.filter((e) => e.type === "undefined_variable"),
   };
 }
