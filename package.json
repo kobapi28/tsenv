@@ -1,5 +1,5 @@
 {
-  "name": "tsenv",
+  "name": "@kobapi28/tsenv",
   "version": "0.1.0",
   "description": "Type-check environment variables against TypeScript schemas",
   "main": "./dist/index.js",
