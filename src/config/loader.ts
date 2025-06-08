@@ -14,8 +14,8 @@ export async function loadConfig(configPath: string): Promise<TsEnvConfig> {
   }
 
   try {
-    // Use require for both JS and TS files when running compiled code
-    const module = require(absolutePath);
+    // Try dynamic import first for TypeScript support
+    const module = await import(`file://${absolutePath}`);
 
     if (!module.default && !module.schema) {
       throw new Error(
@@ -25,11 +25,24 @@ export async function loadConfig(configPath: string): Promise<TsEnvConfig> {
 
     return validateConfig(module.default || module);
   } catch (error) {
-    // If require fails, it might be because we're running with tsx
-    // In that case, we need to compile the TypeScript file
-    throw new Error(
-      `Failed to load config file: ${error instanceof Error ? error.message : error}`,
-    );
+    // Fallback to require for JS files
+    try {
+      // Clear require cache to ensure fresh load
+      delete require.cache[absolutePath];
+      const module = require(absolutePath);
+
+      if (!module.default && !module.schema) {
+        throw new Error(
+          "Config file must have a default export or export a config object",
+        );
+      }
+
+      return validateConfig(module.default || module);
+    } catch (_requireError) {
+      throw new Error(
+        `Failed to load config file: ${error instanceof Error ? error.message : error}`,
+      );
+    }
   }
 }
 
