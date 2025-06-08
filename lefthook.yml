@@ -1,0 +1,11 @@
+pre-commit:
+  commands:
+    type-check:
+      run: pnpm type:check
+    biome-check:
+      run: pnpm biome:check
+
+commit-msg:
+  commands:
+    commitlint:
+      run: npx commitlint --edit {1}
