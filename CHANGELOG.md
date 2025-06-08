@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/kobapi28/tsenv/compare/v1.0.3...v1.0.4) (2025-06-08)
+
+
+### Bug Fixes
+
+* show checked files for missing env variables ([#17](https://github.com/kobapi28/tsenv/issues/17)) ([1353501](https://github.com/kobapi28/tsenv/commit/13535015047e5b743885d30dc947cf3183845fe8))
+
 ## [1.0.3](https://github.com/kobapi28/tsenv/compare/v1.0.2...v1.0.3) (2025-06-08)
 
 
