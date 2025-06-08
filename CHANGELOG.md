@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/kobapi28/tsenv/compare/v1.0.0...v1.0.1) (2025-06-08)
+
+
+### Bug Fixes
+
+* update biome and package configuration for formatting improvements ([#11](https://github.com/kobapi28/tsenv/issues/11)) ([48121a1](https://github.com/kobapi28/tsenv/commit/48121a170b10b8abf33787858bbd0a0f25ab55d1))
+
 # 1.0.0 (2025-06-08)
 
 
