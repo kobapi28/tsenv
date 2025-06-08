@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/kobapi28/tsenv/compare/v1.0.2...v1.0.3) (2025-06-08)
+
+
+### Bug Fixes
+
+* implement error reporting and config loading for tsenv check command ([#14](https://github.com/kobapi28/tsenv/issues/14)) ([fdf7cce](https://github.com/kobapi28/tsenv/commit/fdf7cce5610bb3d7f9145f079d698a210c1fb02c))
+
 ## [1.0.2](https://github.com/kobapi28/tsenv/compare/v1.0.1...v1.0.2) (2025-06-08)
 
 
