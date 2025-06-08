@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/kobapi28/tsenv/compare/v1.0.4...v1.1.0) (2025-06-08)
+
+
+### Features
+
+* add comprehensive testing suite with Vitest ([#19](https://github.com/kobapi28/tsenv/issues/19)) ([8a01715](https://github.com/kobapi28/tsenv/commit/8a0171503e2aa9d6638af6e9c8108ce13e246290)), closes [#18](https://github.com/kobapi28/tsenv/issues/18)
+
 ## [1.0.4](https://github.com/kobapi28/tsenv/compare/v1.0.3...v1.0.4) (2025-06-08)
 
 
