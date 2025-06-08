@@ -34,5 +34,8 @@ jobs:
       - name: Biome check
         run: pnpm biome:check
 
+      - name: Run tests with coverage
+        run: pnpm test:coverage
+
       - name: Build
         run: pnpm build
