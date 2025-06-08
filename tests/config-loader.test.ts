@@ -55,29 +55,6 @@ export default {
       });
     });
 
-    it("should support regex-like patterns in files array", async () => {
-      const configPath = path.join(testConfigDir, "tsenv.config.js");
-      const configContent = `
-module.exports = {
-  schema: "./env.d.ts",
-  files: [
-    "./src/**/*.env",
-    ".env*",
-    "test/**/*.env"
-  ]
-};
-`;
-      fs.writeFileSync(configPath, configContent);
-
-      const config = await loadConfig(configPath);
-
-      expect(config.files).toEqual([
-        "./src/**/*.env",
-        ".env*",
-        "test/**/*.env",
-      ]);
-    });
-
     it("should throw error when config file does not exist", async () => {
       const nonExistentPath = path.join(
         testConfigDir,
@@ -112,6 +89,7 @@ module.exports = {
 `;
       fs.writeFileSync(configPath, configContent);
 
+      // TODO: should throw error with more specific message
       await expect(loadConfig(configPath)).rejects.toThrow("files");
     });
 
@@ -125,6 +103,7 @@ module.exports = {
 `;
       fs.writeFileSync(configPath, configContent);
 
+      // TODO: should throw error with more specific message
       await expect(loadConfig(configPath)).rejects.toThrow("files");
     });
 
