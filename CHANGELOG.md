@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/kobapi28/tsenv/compare/v1.0.1...v1.0.2) (2025-06-08)
+
+
+### Bug Fixes
+
+* add publishConfig for public npm access ([#12](https://github.com/kobapi28/tsenv/issues/12)) ([11b49f9](https://github.com/kobapi28/tsenv/commit/11b49f97429aa1e5e6fe5fdc4c0ae6c187fb6cce))
+
 ## [1.0.1](https://github.com/kobapi28/tsenv/compare/v1.0.0...v1.0.1) (2025-06-08)
 
 
