@@ -2,6 +2,8 @@
 
 Type-check environment variables against TypeScript schemas.
 
+[日本語版 README はこちら (Japanese README)](./README.ja.md)
+
 ## Installation
 
 ```bash

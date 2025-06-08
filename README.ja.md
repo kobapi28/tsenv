@@ -2,6 +2,8 @@
 
 TypeScriptスキーマに対して環境変数の型チェックを行います。
 
+[English README](./README.md)
+
 ## インストール
 
 ```bash
