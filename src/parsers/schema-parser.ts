@@ -22,10 +22,12 @@ export function parseSchemaFile(schemaPath: string): Schema {
   );
 
   const schema: Schema = { fields: [] };
+  let foundEnvType = false;
 
   function visit(node: ts.Node) {
     // Handle type Env = { ... }
     if (ts.isTypeAliasDeclaration(node) && node.name.text === "Env") {
+      foundEnvType = true;
       if (ts.isTypeLiteralNode(node.type)) {
         extractFieldsFromTypeLiteral(node.type);
       }
@@ -55,6 +57,11 @@ export function parseSchemaFile(schemaPath: string): Schema {
   }
 
   visit(sourceFile);
+
+  if (!foundEnvType) {
+    throw new Error(`No 'Env' type declaration found in ${schemaPath}`);
+  }
+
   return schema;
 }
 

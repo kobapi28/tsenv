@@ -151,8 +151,7 @@ type Env = {
       });
     });
 
-    // TODO: if can't find Env type, should throw an error
-    it("should return empty schema for files without Env type", () => {
+    it("should throw error for files without Env type", () => {
       const schemaPath = path.join(testSchemaDir, "empty.d.ts");
       const schemaContent = `
 type OtherType = {
@@ -165,9 +164,18 @@ interface SomeInterface {
 `;
       fs.writeFileSync(schemaPath, schemaContent);
 
-      const schema = parseSchemaFile(schemaPath);
+      expect(() => parseSchemaFile(schemaPath)).toThrow(
+        "No 'Env' type declaration found in",
+      );
+    });
 
-      expect(schema.fields).toHaveLength(0);
+    it("should throw error for completely empty files", () => {
+      const schemaPath = path.join(testSchemaDir, "completely-empty.d.ts");
+      fs.writeFileSync(schemaPath, "");
+
+      expect(() => parseSchemaFile(schemaPath)).toThrow(
+        "No 'Env' type declaration found in",
+      );
     });
 
     it("should handle complex nested structure (but only parse top-level Env)", () => {
