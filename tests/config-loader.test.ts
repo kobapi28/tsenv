@@ -89,8 +89,9 @@ module.exports = {
 `;
       fs.writeFileSync(configPath, configContent);
 
-      // TODO: should throw error with more specific message
-      await expect(loadConfig(configPath)).rejects.toThrow("files");
+      await expect(loadConfig(configPath)).rejects.toThrow(
+        'Config must have a "files" property with an array value',
+      );
     });
 
     it("should throw error when files is not an array", async () => {
@@ -103,8 +104,9 @@ module.exports = {
 `;
       fs.writeFileSync(configPath, configContent);
 
-      // TODO: should throw error with more specific message
-      await expect(loadConfig(configPath)).rejects.toThrow("files");
+      await expect(loadConfig(configPath)).rejects.toThrow(
+        'Config must have a "files" property with an array value',
+      );
     });
 
     it("should handle config with named export", async () => {
