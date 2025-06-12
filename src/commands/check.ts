@@ -22,7 +22,9 @@ export async function checkCommand(options: CheckOptions) {
     }
 
     if (envFiles.length === 0) {
-      return;
+      throw new Error(
+        `No files match the specified patterns: ${config.files.join(", ")}`,
+      );
     }
 
     // Parse all env files
