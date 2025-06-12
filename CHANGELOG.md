@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/kobapi28/tsenv/compare/v1.2.1...v1.2.2) (2025-06-12)
+
+
+### Bug Fixes
+
+* inline Renovate configuration to resolve preset loading error ([#34](https://github.com/kobapi28/tsenv/issues/34)) ([0d53647](https://github.com/kobapi28/tsenv/commit/0d53647a10d9a7b34607192a0493757678556bda)), closes [#32](https://github.com/kobapi28/tsenv/issues/32)
+
 ## [1.2.1](https://github.com/kobapi28/tsenv/compare/v1.2.0...v1.2.1) (2025-06-12)
 
 
