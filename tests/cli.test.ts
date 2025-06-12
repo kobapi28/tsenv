@@ -233,29 +233,28 @@ type Env = {
       expect(mockExit).not.toHaveBeenCalled();
     });
 
-    // TODO: throw error when no files match pattern
-    //     it("should handle missing env files when no files match pattern", async () => {
-    //       const configPath = path.join(testDir, "tsenv.config.js");
-    //       const schemaPath = path.join(testDir, "env.d.ts");
+    it("should throw error when no files match pattern", async () => {
+      const configPath = path.join(testDir, "tsenv.config.js");
+      const schemaPath = path.join(testDir, "env.d.ts");
 
-    //       const configContent = `
-    // module.exports = {
-    //   schema: "${schemaPath}",
-    //   files: ["${testDir}/non-existent-*.env"]
-    // };
-    // `;
-    //       fs.writeFileSync(configPath, configContent);
+      const configContent = `
+module.exports = {
+  schema: "${schemaPath}",
+  files: ["${testDir}/non-existent-*.env"]
+};
+`;
+      fs.writeFileSync(configPath, configContent);
 
-    //       const schemaContent = `
-    // type Env = {
-    //   API_KEY: string;
-    // };
-    // `;
-    //       fs.writeFileSync(schemaPath, schemaContent);
+      const schemaContent = `
+type Env = {
+  API_KEY: string;
+};
+`;
+      fs.writeFileSync(schemaPath, schemaContent);
 
-    //       await checkCommand({ config: configPath });
+      await checkCommand({ config: configPath });
 
-    //       expect(mockExit).not.toHaveBeenCalled();
-    //     });
+      expect(mockExit).toHaveBeenCalledWith(1);
+    });
   });
 });
