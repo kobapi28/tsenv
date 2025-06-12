@@ -7,11 +7,11 @@ Type-check environment variables against TypeScript schemas.
 ## Installation
 
 ```bash
-npm install -D tsenv
+npm install -D @kobapi28/tsenv
 # or
-pnpm add -D tsenv
+pnpm add -D @kobapi28/tsenv
 # or
-yarn add -D tsenv
+yarn add -D @kobapi28/tsenv
 ```
 
 ## Usage
@@ -74,6 +74,8 @@ npx tsenv check -c ./custom-config.ts
 - ✅ Clear error reporting with file locations
 - ✅ Missing required variables detection
 - ✅ Undefined variables detection
+- ✅ Multiline environment variable support
+- ✅ Error handling when no files match specified patterns
 
 ## Example
 
