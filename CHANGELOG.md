@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/kobapi28/tsenv/compare/v1.2.0...v1.2.1) (2025-06-12)
+
+
+### Bug Fixes
+
+* correct Renovate preset path in configuration ([#31](https://github.com/kobapi28/tsenv/issues/31)) ([4536e0a](https://github.com/kobapi28/tsenv/commit/4536e0aabaed0f2aca48a27da49a17319ecc9ec0)), closes [#29](https://github.com/kobapi28/tsenv/issues/29)
+
 # [1.2.0](https://github.com/kobapi28/tsenv/compare/v1.1.0...v1.2.0) (2025-06-12)
 
 
