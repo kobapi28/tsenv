@@ -14,5 +14,7 @@ This project uses **pnpm** as the package manager. Always use pnpm commands:
 - `pnpm install` - Install dependencies
 - `pnpm test` - Run tests
 - `pnpm build` - Build the project
-- `pnpm lint` - Run linting
-- `pnpm format` - Format code
+- `pnpm biome:lint` - Run linting
+- `pnpm biome:format` - Format code
+- `pnpm type:check` - Type checking
+- `pnpm check` - Run type check and biome check
