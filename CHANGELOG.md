@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/kobapi28/tsenv/compare/v1.3.0...v1.4.0) (2025-06-12)
+
+
+### Features
+
+* throw error when no files match specified patterns ([#35](https://github.com/kobapi28/tsenv/issues/35)) ([accda8d](https://github.com/kobapi28/tsenv/commit/accda8d408a39c9f33b6643afed96433e6b988c7))
+
 # [1.3.0](https://github.com/kobapi28/tsenv/compare/v1.2.2...v1.3.0) (2025-06-12)
 
 
