@@ -8,3 +8,13 @@ If you receive an instruction from the user that is deemed to require consistent
 3. Thereafter, always apply it as a standard rule.
 
 Through this process, we will continuously improve the project's rules.
+
+# Package Manager
+This project uses **pnpm** as the package manager. Always use pnpm commands:
+- `pnpm install` - Install dependencies
+- `pnpm test` - Run tests
+- `pnpm build` - Build the project
+- `pnpm biome:lint` - Run linting
+- `pnpm biome:format` - Format code
+- `pnpm type:check` - Type checking
+- `pnpm check` - Run type check and biome check

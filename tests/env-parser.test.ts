@@ -128,31 +128,31 @@ JSON_CONFIG={"key":"value","number":123}
       });
     });
 
-    // TODO: multiline support
-    //     it("should handle multiline values", () => {
-    //       const envPath = path.join(testEnvDir, ".env");
-    //       const envContent = `PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
-    // MIIEpAIBAAKCAQEA0
-    // -----END RSA PRIVATE KEY-----"
-    // API_KEY=simple_value`;
-    //       fs.writeFileSync(envPath, envContent);
+    it("should handle multiline values", () => {
+      const envPath = path.join(testEnvDir, ".env");
+      const envContent = `PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA0
+-----END RSA PRIVATE KEY-----"
+API_KEY=simple_value`;
+      fs.writeFileSync(envPath, envContent);
 
-    //       const variables = parseEnvFile(envPath);
+      const variables = parseEnvFile(envPath);
 
-    //       expect(variables).toHaveLength(2);
-    //       expect(variables).toContainEqual({
-    //         key: "PRIVATE_KEY",
-    //         value: "-----BEGIN RSA PRIVATE KEY-----MIIEpAIBAAKCAQEA0-----END RSA PRIVATE KEY-----",
-    //         line: 1,
-    //         file: path.resolve(envPath),
-    //       });
-    //       expect(variables).toContainEqual({
-    //         key: "API_KEY",
-    //         value: "simple_value",
-    //         line: 2,
-    //         file: path.resolve(envPath),
-    //       });
-    //     });
+      expect(variables).toHaveLength(2);
+      expect(variables).toContainEqual({
+        key: "PRIVATE_KEY",
+        value:
+          "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA0\n-----END RSA PRIVATE KEY-----",
+        line: 1,
+        file: path.resolve(envPath),
+      });
+      expect(variables).toContainEqual({
+        key: "API_KEY",
+        value: "simple_value",
+        line: 4,
+        file: path.resolve(envPath),
+      });
+    });
 
     it("should handle files with different line endings", () => {
       const envPath = path.join(testEnvDir, ".env");
