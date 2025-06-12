@@ -18,6 +18,7 @@ module.exports = {
     {
       matchUpdateTypes: ["patch"],
       labels: ["dependencies", "patch"],
+      automerge: true,
     },
     {
       matchDepTypes: ["devDependencies"],
