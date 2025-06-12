@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/kobapi28/tsenv/compare/v1.2.2...v1.3.0) (2025-06-12)
+
+
+### Features
+
+* implement multiline support for environment variables ([#33](https://github.com/kobapi28/tsenv/issues/33)) ([260e85b](https://github.com/kobapi28/tsenv/commit/260e85b54ebc6f4e9e8d7c76572ecba10f26c30f))
+
 ## [1.2.2](https://github.com/kobapi28/tsenv/compare/v1.2.1...v1.2.2) (2025-06-12)
 
 
