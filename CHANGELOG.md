@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/kobapi28/tsenv/compare/v1.1.0...v1.2.0) (2025-06-12)
+
+
+### Features
+
+* throw error when Env type is not found in schema file ([#30](https://github.com/kobapi28/tsenv/issues/30)) ([e385cee](https://github.com/kobapi28/tsenv/commit/e385cee4e8abb3ae017a259a5dd04b5f66ec7d25))
+
 # [1.1.0](https://github.com/kobapi28/tsenv/compare/v1.0.4...v1.1.0) (2025-06-08)
 
 
