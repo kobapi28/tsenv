@@ -49,7 +49,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "packageManager": "pnpm@10.11.1",
+  "packageManager": "pnpm@10.13.1",
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@commitlint/cli": "19.8.1",
